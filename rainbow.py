@@ -1,5 +1,4 @@
 import click
-import hashlib
 import importlib
 hashfuncs = importlib.import_module("hashfuncs")
 
@@ -18,6 +17,7 @@ hashfuncs = importlib.import_module("hashfuncs")
 def main(create, read,hash_type,wordlist,filename,output, url, hash_str, options):
     d = {}
     opt = [""]
+
     if (create):
         try:
             with open(options, "r") as f:
@@ -25,12 +25,16 @@ def main(create, read,hash_type,wordlist,filename,output, url, hash_str, options
                 opt.append("")
         except:
             raise Exception("Bad Path to options file, use --help for more information")
+
         finally:
             pass
+
         if wordlist == None and filename == None and url == None:
             raise Exception("Please supply a path to a wordlist, use --help for more information")
+
         elif wordlist != None: 
             d = hashfuncs.populate_table_from_link(wordlist, hash_type,opt)
+
         elif filename != None:
             d = hashfuncs.populate_table_from_file(filename, hash_type, opt)
 
@@ -49,7 +53,7 @@ def main(create, read,hash_type,wordlist,filename,output, url, hash_str, options
                     if hsh == hashfuncs.hash_string(hash_type, hash_str):
                         print(f'{hsh}:{passw}')
         except:
-            raise Exception("Please supply a correct path to a wordlist, and a correct hash type see --help for more information")
+            raise Exception("Please supply a correct path to a wordlist, and a correct hash.\ntype see --help for more information")
 
                     
 

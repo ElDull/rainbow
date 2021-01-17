@@ -17,7 +17,7 @@ def populate(ls, hash_type, opt):
                 hsh = hashes[hash_type](word.encode())
                 d.update({hsh.hexdigest():word})
     else:
-        raise SystemExit(f"Unsupported hash type,\nSupported hash types are: {i for i in d.keys()}\nYou entered {hash_type}\n Exiting....")
+        raise SystemExit(f"Unsupported hash type,\nSupported hash types are: [i for i in d.keys()]\nYou entered {hash_type}\n Exiting....")
 
     return d
 def scrape_and_populate(url, hash_type, opt):
@@ -37,6 +37,7 @@ def scrape_and_populate(url, hash_type, opt):
 def populate_table_from_file(path,hash_type, opt):
     ls = open(path,'r').readlines() 
     return populate(ls,hash_type, opt)
+
 def populate_table_from_link(link, hash_type, opt):
     ls = requests.get(link).text.split("\n")[:-1]
     return populate(ls,hash_type, opt)
