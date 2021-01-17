@@ -1,0 +1,5 @@
+env/
+passwords.txt
+options.txt
+__pycache__/
+
